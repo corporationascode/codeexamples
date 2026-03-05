@@ -1,0 +1,104 @@
+{
+  "id": "ent-artisan-bakery-co",
+  "legal_name": {
+    "en": "Artisan Bakery Co.",
+    "fr": "Boulangerie Artisanale Cie"
+  },
+  "entity_type": "corporation",
+  "jurisdiction_of_formation": {
+    "country": "CA",
+    "subdivision": "ON"
+  },
+  "governing_jurisdiction": {
+    "country": "CA",
+    "subdivision": "ON"
+  },
+  "registry_numbers": [
+    {
+      "type": "corporation_number",
+      "number": "3456789",
+      "jurisdiction": "ON"
+    },
+    {
+      "type": "business_number",
+      "number": "345678901RC0001",
+      "jurisdiction": "federal"
+    }
+  ],
+  "addresses": {
+    "registered_office": {
+      "street": "455 Danforth Avenue",
+      "city": "Toronto",
+      "province": "ON",
+      "postal_code": "M4K 1P1",
+      "country": "CA"
+    }
+  },
+  "capital_structure": {
+    "type": "share_capital",
+    "share_classes": [
+      {
+        "class_id": "abc-class-a",
+        "name": "Class A Common Shares",
+        "voting": true,
+        "rights": "Voting, dividends, participation on dissolution",
+        "authorized": "unlimited"
+      }
+    ]
+  },
+  "ownership": [
+    {
+      "holder_id": "ent-heritage-foods-canada",
+      "holder_name": "Heritage Foods Canada Inc.",
+      "holder_type": "entity",
+      "holdings": [
+        {
+          "class_id": "abc-class-a",
+          "class_name": "Class A Common Shares",
+          "quantity": 100,
+          "percentage": 100
+        }
+      ]
+    }
+  ],
+  "governance": {
+    "directors": [
+      {
+        "person_id": "per-rachel-anderson",
+        "person_name": "Rachel Anderson",
+        "appointed_date": "2017-08-20",
+        "status": "active"
+      },
+      {
+        "person_id": "per-thomas-beaumont",
+        "person_name": "Thomas Beaumont",
+        "appointed_date": "2017-08-20",
+        "status": "active"
+      }
+    ],
+    "officers": [
+      {
+        "person_id": "per-rachel-anderson",
+        "person_name": "Rachel Anderson",
+        "title": "President and General Manager",
+        "appointed_date": "2017-08-20",
+        "status": "active"
+      },
+      {
+        "person_id": "per-jennifer-huang",
+        "person_name": "Jennifer Huang",
+        "title": "Secretary",
+        "appointed_date": "2019-04-15",
+        "status": "active"
+      }
+    ]
+  },
+  "corporate_events": [
+    {
+      "type": "incorporation",
+      "date": "2017-08-20",
+      "description": "Incorporated under the Business Corporations Act (Ontario)"
+    }
+  ],
+  "status": "active"
+}

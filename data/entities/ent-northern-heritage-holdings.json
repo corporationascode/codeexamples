@@ -1,0 +1,116 @@
+{
+  "id": "ent-northern-heritage-holdings",
+  "legal_name": {
+    "en": "Northern Heritage Holdings Corp.",
+    "fr": "Société de Portefeuille Patrimoine du Nord Inc."
+  },
+  "entity_type": "corporation",
+  "jurisdiction_of_formation": {
+    "country": "CA",
+    "subdivision": "federal"
+  },
+  "governing_jurisdiction": {
+    "country": "CA",
+    "subdivision": "federal"
+  },
+  "registry_numbers": [
+    {
+      "type": "corporation_number",
+      "number": "1234567-8",
+      "jurisdiction": "federal"
+    },
+    {
+      "type": "business_number",
+      "number": "123456789RC0001",
+      "jurisdiction": "federal"
+    }
+  ],
+  "addresses": {
+    "registered_office": {
+      "street": "100 King Street West, Suite 5600",
+      "city": "Toronto",
+      "province": "ON",
+      "postal_code": "M5X 1C9",
+      "country": "CA"
+    }
+  },
+  "capital_structure": {
+    "type": "share_capital",
+    "share_classes": [
+      {
+        "class_id": "nhh-class-a",
+        "name": "Class A Common Shares",
+        "voting": true,
+        "rights": "Voting, dividends, participation on dissolution",
+        "authorized": "unlimited"
+      }
+    ]
+  },
+  "ownership": [],
+  "governance": {
+    "directors": [
+      {
+        "person_id": "per-margaret-chen",
+        "person_name": "Margaret Chen",
+        "appointed_date": "2015-03-15",
+        "status": "active"
+      },
+      {
+        "person_id": "per-david-chen",
+        "person_name": "David Chen",
+        "appointed_date": "2020-06-01",
+        "status": "active"
+      },
+      {
+        "person_id": "per-lisa-chen-morrison",
+        "person_name": "Lisa Chen-Morrison",
+        "appointed_date": "2020-06-01",
+        "status": "active"
+      },
+      {
+        "person_id": "per-sarah-whitfield",
+        "person_name": "Sarah Whitfield",
+        "appointed_date": "2022-01-15",
+        "status": "active"
+      }
+    ],
+    "officers": [
+      {
+        "person_id": "per-margaret-chen",
+        "person_name": "Margaret Chen",
+        "title": "Chair and Chief Executive Officer",
+        "appointed_date": "2015-03-15",
+        "status": "active"
+      },
+      {
+        "person_id": "per-david-chen",
+        "person_name": "David Chen",
+        "title": "President and Chief Operating Officer",
+        "appointed_date": "2020-06-01",
+        "status": "active"
+      },
+      {
+        "person_id": "per-michael-torres",
+        "person_name": "Michael Torres",
+        "title": "Chief Financial Officer",
+        "appointed_date": "2018-09-01",
+        "status": "active"
+      },
+      {
+        "person_id": "per-jennifer-huang",
+        "person_name": "Jennifer Huang",
+        "title": "Corporate Secretary",
+        "appointed_date": "2019-04-15",
+        "status": "active"
+      }
+    ]
+  },
+  "corporate_events": [
+    {
+      "type": "incorporation",
+      "date": "2015-03-15",
+      "description": "Incorporated under the Canada Business Corporations Act"
+    }
+  ],
+  "status": "active"
+}

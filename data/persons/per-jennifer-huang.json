@@ -1,0 +1,39 @@
+{
+  "id": "per-jennifer-huang",
+  "name": "Jennifer Huang",
+  "prefix": "Ms.",
+  "first_name": "Jennifer",
+  "last_name": "Huang",
+  "_derived": {
+    "_note": "This section is derived from entity files. Do not edit manually.",
+    "directorships": [],
+    "officerships": [
+      {
+        "entity_id": "ent-northern-heritage-holdings",
+        "title": "Corporate Secretary",
+        "status": "active"
+      },
+      {
+        "entity_id": "ent-heritage-foods-canada",
+        "title": "Corporate Secretary",
+        "status": "active"
+      },
+      {
+        "entity_id": "ent-artisan-bakery-co",
+        "title": "Secretary",
+        "status": "active"
+      },
+      {
+        "entity_id": "ent-maple-country-foods",
+        "title": "Secrétaire",
+        "status": "active"
+      }
+    ],
+    "shareholdings": [],
+    "summary": {
+      "director_of": 0,
+      "officer_of": 4,
+      "shareholder_of": 0
+    }
+  }
+}

@@ -1,0 +1,379 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://corpascorp.org/schema/v1/corporate-group.json",
+  "title": "Corporation as Code - Corporate Group Schema",
+  "description": "A structured representation of a corporate group following the Corporation as Code paradigm",
+  "type": "object",
+  "required": ["$meta", "group", "entities", "persons"],
+  "properties": {
+    "$meta": {
+      "type": "object",
+      "description": "Metadata about this corporate record snapshot",
+      "required": ["schema_version", "snapshot_date", "source"],
+      "properties": {
+        "schema_version": { "type": "string", "const": "1.0.0" },
+        "snapshot_date": { "type": "string", "format": "date" },
+        "source": { "type": "string" },
+        "generated_by": { "type": "string" },
+        "commit_id": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    },
+    "group": {
+      "$ref": "#/$defs/CorporateGroup"
+    },
+    "entities": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Entity" }
+    },
+    "persons": {
+      "type": "array",
+      "description": "Natural persons referenced across entities (directors, officers, individual shareholders)",
+      "items": { "$ref": "#/$defs/Person" }
+    }
+  },
+  "$defs": {
+    "CorporateGroup": {
+      "type": "object",
+      "description": "Top-level corporate group metadata",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "ultimate_parent_id": { "type": "string", "description": "Entity ID of the ultimate parent" },
+        "industry": { "type": "string" },
+        "primary_jurisdiction": { "$ref": "#/$defs/Jurisdiction" }
+      }
+    },
+    "Entity": {
+      "type": "object",
+      "description": "A legal entity (corporation, partnership, etc.)",
+      "required": ["id", "legal_name", "entity_type", "jurisdiction_of_formation", "governing_jurisdiction", "status"],
+      "properties": {
+        "id": { "type": "string", "description": "Internal unique identifier" },
+        "legal_name": { "$ref": "#/$defs/BilingualName" },
+        "entity_type": { "$ref": "#/$defs/EntityType" },
+        "predecessors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Predecessor" }
+        },
+        "other_names": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/OtherName" }
+        },
+        "jurisdiction_of_formation": { "$ref": "#/$defs/Jurisdiction" },
+        "governing_jurisdiction": { "$ref": "#/$defs/Jurisdiction" },
+        "registry_numbers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/RegistryNumber" }
+        },
+        "formation_date": { "type": "string", "format": "date" },
+        "corporate_events": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/CorporateEvent" }
+        },
+        "addresses": {
+          "type": "object",
+          "properties": {
+            "registered_office": { "$ref": "#/$defs/Address" },
+            "chief_executive_office": { "$ref": "#/$defs/Address" },
+            "principal_places_of_business": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/Address" }
+            },
+            "material_tangible_assets": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/Address" }
+            }
+          }
+        },
+        "capital_structure": { "$ref": "#/$defs/CapitalStructure" },
+        "ownership": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/OwnershipInterest" }
+        },
+        "governance": { "$ref": "#/$defs/Governance" },
+        "registered_agent": { "$ref": "#/$defs/RegisteredAgent" },
+        "extra_provincial_registrations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExtraProvincialRegistration" }
+        },
+        "business_names": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/BusinessNameRegistration" }
+        },
+        "licences": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Licence" }
+        },
+        "copyrights": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/Copyright" }
+        },
+        "status": { "enum": ["active", "inactive", "dissolved", "amalgamated"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "EntityType": {
+      "type": "string",
+      "enum": [
+        "corporation",
+        "general_partnership",
+        "limited_partnership",
+        "trust",
+        "sole_proprietorship"
+      ]
+    },
+    "BilingualName": {
+      "type": "object",
+      "description": "Supports bilingual names (EN/FR)",
+      "required": ["en"],
+      "properties": {
+        "en": { "type": "string" },
+        "fr": { "type": "string" }
+      }
+    },
+    "Jurisdiction": {
+      "type": "object",
+      "required": ["country", "subdivision"],
+      "properties": {
+        "country": { "type": "string", "description": "ISO 3166-1 alpha-2 country code" },
+        "subdivision": { "type": "string", "description": "Province/state code or 'federal'" }
+      }
+    },
+    "Predecessor": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "event_type": { "enum": ["name_change", "amalgamation", "continuance", "merger", "asset_acquisition"] },
+        "effective_date": { "type": "string", "format": "date" },
+        "description": { "type": "string" }
+      }
+    },
+    "OtherName": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "type": { "enum": ["trade_name", "dba", "brand", "operating_name"] }
+      }
+    },
+    "RegistryNumber": {
+      "type": "object",
+      "required": ["type", "number"],
+      "properties": {
+        "type": { "enum": ["corporation_number", "neq", "business_number", "corporation_key"] },
+        "number": { "type": "string" },
+        "jurisdiction": { "type": "string" }
+      }
+    },
+    "CorporateEvent": {
+      "type": "object",
+      "required": ["event_type", "effective_date"],
+      "properties": {
+        "event_type": {
+          "enum": [
+            "incorporation",
+            "amalgamation",
+            "continuance",
+            "name_change",
+            "amendment",
+            "dissolution",
+            "acquisition"
+          ]
+        },
+        "effective_date": { "type": "string", "format": "date" },
+        "description": { "type": "string" },
+        "parties": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street_address": { "type": "string" },
+        "city": { "type": "string" },
+        "province": { "type": "string" },
+        "postal_code": { "type": "string" },
+        "country": { "type": "string", "default": "CA" }
+      }
+    },
+    "CapitalStructure": {
+      "oneOf": [
+        { "$ref": "#/$defs/ShareCapital" },
+        { "$ref": "#/$defs/PartnershipCapital" }
+      ]
+    },
+    "ShareCapital": {
+      "type": "object",
+      "description": "Share capital structure for corporations",
+      "properties": {
+        "type": { "const": "share_capital" },
+        "share_classes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ShareClass" }
+        }
+      }
+    },
+    "ShareClass": {
+      "type": "object",
+      "required": ["class_id", "name"],
+      "properties": {
+        "class_id": { "type": "string" },
+        "name": { "type": "string", "description": "e.g., 'Class A Common Voting'" },
+        "authorized": {
+          "oneOf": [
+            { "type": "number" },
+            { "const": "unlimited" }
+          ]
+        },
+        "issued": { "type": "number" },
+        "par_value": { "type": "number" },
+        "voting": { "type": "boolean" },
+        "votes_per_share": { "type": "number" },
+        "attributes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "PartnershipCapital": {
+      "type": "object",
+      "description": "Capital structure for partnerships",
+      "properties": {
+        "type": { "const": "partnership_capital" },
+        "authorized_units": {
+          "oneOf": [
+            { "type": "number" },
+            { "const": "unlimited" }
+          ]
+        },
+        "issued_units": { "type": "number" },
+        "general_partner_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "limited_partner_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "OwnershipInterest": {
+      "type": "object",
+      "required": ["holder_type", "holder_id"],
+      "properties": {
+        "holder_type": { "enum": ["entity", "person", "trust"] },
+        "holder_id": { "type": "string", "description": "Reference to entity or person ID" },
+        "holder_name": { "type": "string", "description": "Denormalized name for readability" },
+        "holdings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "class_id": { "type": "string" },
+              "class_name": { "type": "string" },
+              "quantity": { "type": "number" },
+              "acquisition_date": { "type": "string", "format": "date" },
+              "acquisition_type": { "type": "string" }
+            }
+          }
+        },
+        "units": { "type": "number", "description": "For partnership interests" },
+        "partner_type": { "enum": ["general", "limited"] }
+      }
+    },
+    "Governance": {
+      "type": "object",
+      "properties": {
+        "directors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/DirectorAppointment" }
+        },
+        "officers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/OfficerAppointment" }
+        }
+      }
+    },
+    "DirectorAppointment": {
+      "type": "object",
+      "required": ["person_id", "status"],
+      "properties": {
+        "person_id": { "type": "string" },
+        "person_name": { "type": "string" },
+        "appointed_date": { "type": "string", "format": "date" },
+        "term_end_date": { "type": "string", "format": "date" },
+        "status": { "enum": ["active", "resigned", "removed"] }
+      }
+    },
+    "OfficerAppointment": {
+      "type": "object",
+      "required": ["person_id", "title", "status"],
+      "properties": {
+        "person_id": { "type": "string" },
+        "person_name": { "type": "string" },
+        "title": { "type": "string" },
+        "appointed_date": { "type": "string", "format": "date" },
+        "status": { "enum": ["active", "resigned", "removed"] }
+      }
+    },
+    "Person": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "prefix": { "type": "string" },
+        "first_name": { "type": "string" },
+        "last_name": { "type": "string" }
+      }
+    },
+    "RegisteredAgent": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "firm": { "type": "string" },
+        "address": { "$ref": "#/$defs/Address" }
+      }
+    },
+    "ExtraProvincialRegistration": {
+      "type": "object",
+      "required": ["jurisdiction", "registration_number"],
+      "properties": {
+        "jurisdiction": { "type": "string" },
+        "registration_number": { "type": "string" },
+        "status": { "enum": ["active", "cancelled", "pending"] }
+      }
+    },
+    "BusinessNameRegistration": {
+      "type": "object",
+      "properties": {
+        "jurisdiction": { "type": "string" },
+        "name": { "type": "string" },
+        "registration_number": { "type": "string" }
+      }
+    },
+    "Licence": {
+      "type": "object",
+      "properties": {
+        "jurisdiction": { "type": "string" },
+        "type": { "type": "string" },
+        "licence_number": { "type": "string" },
+        "issuing_authority": { "type": "string" },
+        "status": { "enum": ["active", "expired", "pending", "in_process"] }
+      }
+    },
+    "Copyright": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "registration_number": { "type": "string" }
+      }
+    }
+  }
+}

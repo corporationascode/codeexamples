@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+package-lock.json
+
+# Generated documents (minute-books contains generated Word docs)
+minute-books/
+
+# Operation outputs
+operations/*/output/
+
+# Backup directories
+backups/
+
+# Data history (large, contains many timestamped backups)
+data/_history/
+
+# Viewer build output
+viewer/build/
+viewer/dist/
+
+# Temporary files
+*.tmp
+*.log
+tmpclaude-*
+~$*.docx
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Local settings
+.claude/settings.local.json

@@ -1,0 +1,24 @@
+{
+  "id": "per-lisa-chen-morrison",
+  "name": "Lisa Chen-Morrison",
+  "prefix": "Ms.",
+  "first_name": "Lisa",
+  "last_name": "Chen-Morrison",
+  "_derived": {
+    "_note": "This section is derived from entity files. Do not edit manually.",
+    "directorships": [
+      {
+        "entity_id": "ent-northern-heritage-holdings",
+        "entity_name": "Northern Heritage Holdings Corp.",
+        "status": "active"
+      }
+    ],
+    "officerships": [],
+    "shareholdings": [],
+    "summary": {
+      "director_of": 1,
+      "officer_of": 0,
+      "shareholder_of": 0
+    }
+  }
+}

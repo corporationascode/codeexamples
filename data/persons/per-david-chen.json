@@ -1,0 +1,40 @@
+{
+  "id": "per-david-chen",
+  "name": "David Chen",
+  "prefix": "Mr.",
+  "first_name": "David",
+  "last_name": "Chen",
+  "_derived": {
+    "_note": "This section is derived from entity files. Do not edit manually.",
+    "directorships": [
+      {
+        "entity_id": "ent-northern-heritage-holdings",
+        "entity_name": "Northern Heritage Holdings Corp.",
+        "status": "active"
+      },
+      {
+        "entity_id": "ent-heritage-foods-canada",
+        "entity_name": "Heritage Foods Canada Inc.",
+        "status": "active"
+      }
+    ],
+    "officerships": [
+      {
+        "entity_id": "ent-northern-heritage-holdings",
+        "title": "President and Chief Operating Officer",
+        "status": "active"
+      },
+      {
+        "entity_id": "ent-heritage-foods-canada",
+        "title": "President and Chief Executive Officer",
+        "status": "active"
+      }
+    ],
+    "shareholdings": [],
+    "summary": {
+      "director_of": 2,
+      "officer_of": 2,
+      "shareholder_of": 0
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "per-rachel-anderson",
+  "name": "Rachel Anderson",
+  "prefix": "Ms.",
+  "first_name": "Rachel",
+  "last_name": "Anderson",
+  "_derived": {
+    "_note": "This section is derived from entity files. Do not edit manually.",
+    "directorships": [
+      {
+        "entity_id": "ent-artisan-bakery-co",
+        "entity_name": "Artisan Bakery Co.",
+        "status": "active"
+      }
+    ],
+    "officerships": [
+      {
+        "entity_id": "ent-artisan-bakery-co",
+        "title": "President and General Manager",
+        "status": "active"
+      }
+    ],
+    "shareholdings": [],
+    "summary": {
+      "director_of": 1,
+      "officer_of": 1,
+      "shareholder_of": 0
+    }
+  }
+}

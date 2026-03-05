@@ -1,0 +1,30 @@
+{
+  "id": "per-margaret-chen",
+  "name": "Margaret Chen",
+  "prefix": "Ms.",
+  "first_name": "Margaret",
+  "last_name": "Chen",
+  "_derived": {
+    "_note": "This section is derived from entity files. Do not edit manually.",
+    "directorships": [
+      {
+        "entity_id": "ent-northern-heritage-holdings",
+        "entity_name": "Northern Heritage Holdings Corp.",
+        "status": "active"
+      }
+    ],
+    "officerships": [
+      {
+        "entity_id": "ent-northern-heritage-holdings",
+        "title": "Chair and Chief Executive Officer",
+        "status": "active"
+      }
+    ],
+    "shareholdings": [],
+    "summary": {
+      "director_of": 1,
+      "officer_of": 1,
+      "shareholder_of": 0
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "id": "ent-maple-country-foods",
+  "legal_name": {
+    "en": "Maple Country Foods Inc.",
+    "fr": "Aliments Pays d'Érable Inc."
+  },
+  "entity_type": "corporation",
+  "jurisdiction_of_formation": {
+    "country": "CA",
+    "subdivision": "QC"
+  },
+  "governing_jurisdiction": {
+    "country": "CA",
+    "subdivision": "QC"
+  },
+  "registry_numbers": [
+    {
+      "type": "neq",
+      "number": "1234567890",
+      "jurisdiction": "QC"
+    },
+    {
+      "type": "business_number",
+      "number": "456789012RC0001",
+      "jurisdiction": "federal"
+    }
+  ],
+  "addresses": {
+    "registered_office": {
+      "street": "1234 Rue Saint-Laurent",
+      "city": "Montréal",
+      "province": "QC",
+      "postal_code": "H2X 2T3",
+      "country": "CA"
+    }
+  },
+  "capital_structure": {
+    "type": "share_capital",
+    "share_classes": [
+      {
+        "class_id": "mcf-class-a",
+        "name": "Class A Common Shares",
+        "voting": true,
+        "rights": "Voting, dividends, participation on dissolution",
+        "authorized": "unlimited"
+      }
+    ]
+  },
+  "ownership": [
+    {
+      "holder_id": "ent-heritage-foods-canada",
+      "holder_name": "Heritage Foods Canada Inc.",
+      "holder_type": "entity",
+      "holdings": [
+        {
+          "class_id": "mcf-class-a",
+          "class_name": "Class A Common Shares",
+          "quantity": 100,
+          "percentage": 100.0
+        }
+      ]
+    }
+  ],
+  "governance": {
+    "directors": [
+      {
+        "person_id": "per-diane-lefebvre",
+        "person_name": "Diane Lefebvre",
+        "appointed_date": "2018-02-15",
+        "status": "active"
+      },
+      {
+        "person_id": "per-thomas-beaumont",
+        "person_name": "Thomas Beaumont",
+        "appointed_date": "2018-02-15",
+        "status": "active"
+      }
+    ],
+    "officers": [
+      {
+        "person_id": "per-diane-lefebvre",
+        "person_name": "Diane Lefebvre",
+        "title": "Présidente et Directrice Générale",
+        "appointed_date": "2018-02-15",
+        "status": "active"
+      },
+      {
+        "person_id": "per-jennifer-huang",
+        "person_name": "Jennifer Huang",
+        "title": "Secrétaire",
+        "appointed_date": "2019-04-15",
+        "status": "active"
+      }
+    ]
+  },
+  "corporate_events": [
+    {
+      "type": "incorporation",
+      "date": "2018-02-15",
+      "description": "Incorporated under the Business Corporations Act (Quebec)"
+    }
+  ],
+  "status": "active"
+}

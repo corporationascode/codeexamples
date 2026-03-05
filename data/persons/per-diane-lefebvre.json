@@ -1,0 +1,30 @@
+{
+  "id": "per-diane-lefebvre",
+  "name": "Diane Lefebvre",
+  "prefix": "Ms.",
+  "first_name": "Diane",
+  "last_name": "Lefebvre",
+  "_derived": {
+    "_note": "This section is derived from entity files. Do not edit manually.",
+    "directorships": [
+      {
+        "entity_id": "ent-maple-country-foods",
+        "entity_name": "Aliments Pays d'Érable Inc.",
+        "status": "active"
+      }
+    ],
+    "officerships": [
+      {
+        "entity_id": "ent-maple-country-foods",
+        "title": "Présidente et Directrice Générale",
+        "status": "active"
+      }
+    ],
+    "shareholdings": [],
+    "summary": {
+      "director_of": 1,
+      "officer_of": 1,
+      "shareholder_of": 0
+    }
+  }
+}

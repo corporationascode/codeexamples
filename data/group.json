@@ -1,0 +1,177 @@
+{
+  "$meta": {
+    "schema_version": "1.0",
+    "snapshot_date": "2026-02-16",
+    "source": "Synthetic demonstration data for Corporation as Code methodology"
+  },
+  "group": {
+    "name": "Northern Heritage Foods Inc.",
+    "ultimate_parent": "Northern Heritage Holdings Corp.",
+    "industry": "Food Manufacturing & Retail",
+    "description": "Family-owned Canadian food manufacturing and retail business specializing in artisanal baked goods, preserves, and specialty foods"
+  },
+  "entities": [
+    {
+      "id": "ent-northern-heritage-holdings",
+      "name": "Northern Heritage Holdings Corp.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "federal"
+      }
+    },
+    {
+      "id": "ent-heritage-foods-canada",
+      "name": "Heritage Foods Canada Inc.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "federal"
+      }
+    },
+    {
+      "id": "ent-artisan-bakery-co",
+      "name": "Artisan Bakery Co.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "ON"
+      }
+    },
+    {
+      "id": "ent-prairie-specialty-foods",
+      "name": "Prairie Specialty Foods Ltd.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "MB"
+      }
+    },
+    {
+      "id": "ent-mountain-view-preserves",
+      "name": "Mountain View Preserves Inc.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "BC"
+      }
+    },
+    {
+      "id": "ent-maple-country-foods",
+      "name": "Aliments Pays d'Érable Inc.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "QC"
+      }
+    },
+    {
+      "id": "ent-foothills-baking",
+      "name": "Foothills Baking Ltd.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "AB"
+      }
+    },
+    {
+      "id": "ent-coastal-confections",
+      "name": "Coastal Confections Inc.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "BC"
+      }
+    },
+    {
+      "id": "ent-heritage-retail-stores",
+      "name": "Heritage Retail Stores Inc.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "ON"
+      }
+    },
+    {
+      "id": "ent-northern-distribution",
+      "name": "Northern Distribution Corp.",
+      "type": "corporation",
+      "status": "active",
+      "jurisdiction": {
+        "country": "CA",
+        "subdivision": "federal"
+      }
+    }
+  ],
+  "persons": [
+    {
+      "id": "per-margaret-chen",
+      "name": "Margaret Chen"
+    },
+    {
+      "id": "per-david-chen",
+      "name": "David Chen"
+    },
+    {
+      "id": "per-lisa-chen-morrison",
+      "name": "Lisa Chen-Morrison"
+    },
+    {
+      "id": "per-robert-morrison",
+      "name": "Robert Morrison"
+    },
+    {
+      "id": "per-emily-chen",
+      "name": "Emily Chen"
+    },
+    {
+      "id": "per-sarah-whitfield",
+      "name": "Sarah Whitfield"
+    },
+    {
+      "id": "per-michael-torres",
+      "name": "Michael Torres"
+    },
+    {
+      "id": "per-jennifer-huang",
+      "name": "Jennifer Huang"
+    },
+    {
+      "id": "per-thomas-beaumont",
+      "name": "Thomas Beaumont"
+    },
+    {
+      "id": "per-rachel-anderson",
+      "name": "Rachel Anderson"
+    },
+    {
+      "id": "per-kevin-oconnor",
+      "name": "Kevin O'Connor"
+    },
+    {
+      "id": "per-diane-lefebvre",
+      "name": "Diane Lefebvre"
+    },
+    {
+      "id": "per-james-mackenzie",
+      "name": "James MacKenzie"
+    },
+    {
+      "id": "per-patricia-nguyen",
+      "name": "Patricia Nguyen"
+    },
+    {
+      "id": "per-william-schmidt",
+      "name": "William Schmidt"
+    }
+  ]
+}

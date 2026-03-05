@@ -1,0 +1,124 @@
+{
+  "id": "ent-heritage-foods-canada",
+  "legal_name": {
+    "en": "Heritage Foods Canada Inc.",
+    "fr": "Aliments Patrimoine Canada Inc."
+  },
+  "entity_type": "corporation",
+  "jurisdiction_of_formation": {
+    "country": "CA",
+    "subdivision": "federal"
+  },
+  "governing_jurisdiction": {
+    "country": "CA",
+    "subdivision": "federal"
+  },
+  "registry_numbers": [
+    {
+      "type": "corporation_number",
+      "number": "2345678-9",
+      "jurisdiction": "federal"
+    },
+    {
+      "type": "business_number",
+      "number": "234567890RC0001",
+      "jurisdiction": "federal"
+    }
+  ],
+  "addresses": {
+    "registered_office": {
+      "street": "100 King Street West, Suite 5600",
+      "city": "Toronto",
+      "province": "ON",
+      "postal_code": "M5X 1C9",
+      "country": "CA"
+    },
+    "head_office": {
+      "street": "2500 Eglinton Avenue East",
+      "city": "Toronto",
+      "province": "ON",
+      "postal_code": "M1K 2R1",
+      "country": "CA"
+    }
+  },
+  "capital_structure": {
+    "type": "share_capital",
+    "share_classes": [
+      {
+        "class_id": "hfc-class-a",
+        "name": "Class A Common Shares",
+        "voting": true,
+        "rights": "Voting, dividends, participation on dissolution",
+        "authorized": "unlimited"
+      }
+    ]
+  },
+  "ownership": [
+    {
+      "holder_id": "ent-northern-heritage-holdings",
+      "holder_name": "Northern Heritage Holdings Corp.",
+      "holder_type": "entity",
+      "holdings": [
+        {
+          "class_id": "hfc-class-a",
+          "class_name": "Class A Common Shares",
+          "quantity": 100,
+          "percentage": 100.0
+        }
+      ]
+    }
+  ],
+  "governance": {
+    "directors": [
+      {
+        "person_id": "per-david-chen",
+        "person_name": "David Chen",
+        "appointed_date": "2016-05-10",
+        "status": "active"
+      },
+      {
+        "person_id": "per-sarah-whitfield",
+        "person_name": "Sarah Whitfield",
+        "appointed_date": "2022-01-15",
+        "status": "active"
+      },
+      {
+        "person_id": "per-michael-torres",
+        "person_name": "Michael Torres",
+        "appointed_date": "2018-09-01",
+        "status": "active"
+      }
+    ],
+    "officers": [
+      {
+        "person_id": "per-david-chen",
+        "person_name": "David Chen",
+        "title": "President and Chief Executive Officer",
+        "appointed_date": "2020-06-01",
+        "status": "active"
+      },
+      {
+        "person_id": "per-thomas-beaumont",
+        "person_name": "Thomas Beaumont",
+        "title": "Vice President, Operations",
+        "appointed_date": "2017-03-15",
+        "status": "active"
+      },
+      {
+        "person_id": "per-jennifer-huang",
+        "person_name": "Jennifer Huang",
+        "title": "Corporate Secretary",
+        "appointed_date": "2019-04-15",
+        "status": "active"
+      }
+    ]
+  },
+  "corporate_events": [
+    {
+      "type": "incorporation",
+      "date": "2016-05-10",
+      "description": "Incorporated under the Canada Business Corporations Act"
+    }
+  ],
+  "status": "active"
+}

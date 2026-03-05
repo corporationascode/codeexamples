@@ -1,0 +1,35 @@
+{
+  "id": "per-thomas-beaumont",
+  "name": "Thomas Beaumont",
+  "prefix": "Mr.",
+  "first_name": "Thomas",
+  "last_name": "Beaumont",
+  "_derived": {
+    "_note": "This section is derived from entity files. Do not edit manually.",
+    "directorships": [
+      {
+        "entity_id": "ent-artisan-bakery-co",
+        "entity_name": "Artisan Bakery Co.",
+        "status": "active"
+      },
+      {
+        "entity_id": "ent-maple-country-foods",
+        "entity_name": "Aliments Pays d'Érable Inc.",
+        "status": "active"
+      }
+    ],
+    "officerships": [
+      {
+        "entity_id": "ent-heritage-foods-canada",
+        "title": "Vice President, Operations",
+        "status": "active"
+      }
+    ],
+    "shareholdings": [],
+    "summary": {
+      "director_of": 2,
+      "officer_of": 1,
+      "shareholder_of": 0
+    }
+  }
+}

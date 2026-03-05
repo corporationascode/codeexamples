@@ -1,0 +1,26 @@
+{
+  "name": "corporation-as-code",
+  "version": "1.0.0",
+  "description": "Demonstration of Corporation as Code methodology - representing corporate entities as structured, version-controlled data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "corporate-governance",
+    "legal-tech",
+    "data-driven",
+    "version-control",
+    "corporate-law"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "docx": "^8.5.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
