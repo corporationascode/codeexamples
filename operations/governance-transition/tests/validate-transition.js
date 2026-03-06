@@ -162,6 +162,10 @@ function runValidation(outgoingId, incomingId, incomingName, entitiesFilter) {
   if (totalOutgoingRoles === 0) {
     console.log(`  ✗ Outgoing has active roles: No active roles found for ${outgoing.name}`);
     failed++;
+    console.log('='.repeat(70));
+    console.log(`\nResults: ${passed} passed, ${failed} failed, ${warnings} warnings`);
+    console.log('\nVALIDATION FAILED\n');
+    process.exit(1);
   } else {
     console.log(`  ✓ Outgoing has active roles: ${outgoingRoles.directorships.length} directorships, ${outgoingRoles.officerships.length} officerships`);
     passed++;

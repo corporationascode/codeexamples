@@ -142,7 +142,7 @@ Directors 5-6:   _____________    _____________
 (etc.)
 ```
 
-If odd number of directors, last row has single signature block centered.
+If odd number of directors, last row has a single signature block left-aligned.
 
 ## Sample Output Filename
 

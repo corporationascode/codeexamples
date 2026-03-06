@@ -78,11 +78,11 @@ Located in `tests/` subdirectory:
 ### Validation Rules
 
 1. **Outgoing person exists** - Must have a person file
-2. **Incoming person exists** - Must have a person file
+2. **Incoming person exists** - Must have a person file (or will be created via `--incoming-name`)
 3. **Outgoing has active roles** - Must have director/officer positions to transition
-4. **Incoming not already in roles** - Cannot appoint to positions already held
-5. **Target entities are active** - Skip inactive entities (unless --entities=all)
-6. **Entities are corporations** - Partnerships don't have directors
+4. **Incoming role conflicts** *(warning)* - Entities where incoming already holds a role are reported but not blocking; those entities are skipped
+5. **Target entities are active** - Inactive entities are filtered out automatically by `getActiveRoles`; not a blocking check
+6. **Entities are corporations** *(warning)* - Non-corporation entities are reported and skipped; does not block the transition
 
 ## Data Changes (--apply flag)
 
@@ -101,7 +101,7 @@ When `--apply` is used:
 2. **The incoming person is added**:
    ```json
    {
-     "person_id": "per-jennifer-huang",
+     "person_id": "per-emily-chen",
      "person_name": "Emily Chen",
      "appointed_date": "2026-01-12",
      "status": "active"

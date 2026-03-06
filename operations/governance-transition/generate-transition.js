@@ -55,7 +55,12 @@ function formatDate(dateStr) {
       iso: now.toISOString().split('T')[0]
     };
   }
-  const date = new Date(dateStr);
+  // Parse date parts directly to avoid UTC-midnight timezone shift.
+  // new Date('YYYY-MM-DD') parses as UTC, which toLocaleDateString then
+  // converts to local time - shifting the date back by one day in negative
+  // UTC-offset environments (e.g. UTC-5 renders Feb 1 as Jan 31).
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
   return {
     display: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     iso: dateStr
@@ -120,7 +125,6 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
         page: { margin: { top: 1800, right: 1800, bottom: 1800, left: 1800 } }
       },
       children: [
-        // Header
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 80 },
@@ -131,35 +135,25 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
           spacing: { after: 400 },
           children: [new TextRun({ text: '(the "Corporation")', italics: true, size: 22, font: "Times New Roman", color: "333333" })]
         }),
-
-        // Title
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 300 },
           children: [new TextRun({ text: "RESOLUTION OF THE BOARD OF DIRECTORS", bold: true, size: 28, font: "Times New Roman", color: navyColor })]
         }),
-
-        // Line
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 300 },
           children: [new TextRun({ text: "─".repeat(60), size: 20, color: "CCCCCC" })]
         }),
-
-        // Section header
         new Paragraph({
           spacing: { after: 300 },
           children: [new TextRun({ text: "ACCEPTANCE OF RESIGNATION", bold: true, size: 24, font: "Times New Roman", underline: {} })]
         }),
-
-        // Line
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 400 },
           children: [new TextRun({ text: "─".repeat(60), size: 20, color: "CCCCCC" })]
         }),
-
-        // WHEREAS 1
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 200 },
@@ -169,8 +163,6 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
             new TextRun({ text: ` has served as ${rolesText} of the Corporation;`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // WHEREAS 2
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 400 },
@@ -180,15 +172,11 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
             new TextRun({ text: ` has tendered ${pronouns.possessive} resignation from all positions held with the Corporation, effective ${effectiveDate.display};`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // NOW THEREFORE
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 300 },
           children: [new TextRun({ text: "NOW THEREFORE BE IT RESOLVED THAT:", bold: true, size: 24, font: "Times New Roman" })]
         }),
-
-        // Resolution 1
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 200 },
@@ -199,8 +187,6 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
             new TextRun({ text: ` as ${rolesText} of the Corporation, effective ${effectiveDate.display}, be and is hereby accepted.`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // Resolution 2
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 200 },
@@ -211,8 +197,6 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
             new TextRun({ text: ` for ${pronouns.possessive} valuable service and contributions to the Corporation.`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // Resolution 3
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 400 },
@@ -222,15 +206,11 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
             new TextRun({ text: "The officers of the Corporation be and are hereby authorized to update the corporate records to reflect this resignation.", size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // Consent
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 300 },
           children: [new TextRun({ text: "The undersigned, being all of the directors of the Corporation, hereby consent to the foregoing resolution.", size: 24, font: "Times New Roman" })]
         }),
-
-        // Dated
         new Paragraph({
           spacing: { after: 200 },
           children: [
@@ -238,8 +218,6 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
             new TextRun({ text: `as of the ${effectiveDate.display}.`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // Signatures
         ...signatureRows
       ]
     }]
@@ -250,7 +228,6 @@ function createResignationResolution(entity, outgoing, roles, effectiveDate) {
 function createAppointmentResolution(entity, outgoing, incoming, roles, effectiveDate, allDirectors) {
   const corpName = entity.legal_name?.en || entity.legal_name?.fr;
 
-  // Determine what we're appointing
   let headerText = '';
   let resolutions = [];
 
@@ -290,7 +267,6 @@ function createAppointmentResolution(entity, outgoing, incoming, roles, effectiv
     });
   }
 
-  // Build signature rows (remaining directors + incoming if director)
   const signatories = [...allDirectors];
   if (roles.isDirector && !signatories.some(d => d.person_id === incoming.id)) {
     signatories.push({ person_id: incoming.id, person_name: incoming.name });
@@ -313,7 +289,6 @@ function createAppointmentResolution(entity, outgoing, incoming, roles, effectiv
         page: { margin: { top: 1800, right: 1800, bottom: 1800, left: 1800 } }
       },
       children: [
-        // Header
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 80 },
@@ -324,35 +299,25 @@ function createAppointmentResolution(entity, outgoing, incoming, roles, effectiv
           spacing: { after: 400 },
           children: [new TextRun({ text: '(the "Corporation")', italics: true, size: 22, font: "Times New Roman", color: "333333" })]
         }),
-
-        // Title
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 300 },
           children: [new TextRun({ text: "RESOLUTION OF THE BOARD OF DIRECTORS", bold: true, size: 28, font: "Times New Roman", color: navyColor })]
         }),
-
-        // Line
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 300 },
           children: [new TextRun({ text: "─".repeat(60), size: 20, color: "CCCCCC" })]
         }),
-
-        // Section header
         new Paragraph({
           spacing: { after: 300 },
           children: [new TextRun({ text: headerText, bold: true, size: 24, font: "Times New Roman", underline: {} })]
         }),
-
-        // Line
         new Paragraph({
           alignment: AlignmentType.CENTER,
           spacing: { after: 400 },
           children: [new TextRun({ text: "─".repeat(60), size: 20, color: "CCCCCC" })]
         }),
-
-        // WHEREAS 1
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 200 },
@@ -361,8 +326,6 @@ function createAppointmentResolution(entity, outgoing, incoming, roles, effectiv
             new TextRun({ text: `a vacancy exists ${roles.isDirector ? 'on the Board of Directors' : ''}${roles.isDirector && roles.isOfficer ? ' and ' : ''}${roles.isOfficer ? `in the office of ${roles.officerTitle}` : ''} of the Corporation following the resignation of ${outgoing.name};`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // WHEREAS 2
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 200 },
@@ -371,8 +334,6 @@ function createAppointmentResolution(entity, outgoing, incoming, roles, effectiv
             new TextRun({ text: "the Board deems it advisable to fill such vacancy;", size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // WHEREAS 3
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 400 },
@@ -382,25 +343,17 @@ function createAppointmentResolution(entity, outgoing, incoming, roles, effectiv
             new TextRun({ text: ` has consented to act as ${roles.isDirector && roles.isOfficer ? 'a director and officer' : roles.isDirector ? 'a director' : 'an officer'} of the Corporation;`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // NOW THEREFORE
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { after: 300 },
           children: [new TextRun({ text: "NOW THEREFORE BE IT RESOLVED THAT:", bold: true, size: 24, font: "Times New Roman" })]
         }),
-
-        // Resolutions
         ...resolutionParagraphs,
-
-        // Consent
         new Paragraph({
           alignment: AlignmentType.JUSTIFIED,
           spacing: { before: 200, after: 300 },
           children: [new TextRun({ text: "The undersigned, being all of the directors of the Corporation, hereby consent to the foregoing resolution.", size: 24, font: "Times New Roman" })]
         }),
-
-        // Dated
         new Paragraph({
           spacing: { after: 200 },
           children: [
@@ -408,8 +361,6 @@ function createAppointmentResolution(entity, outgoing, incoming, roles, effectiv
             new TextRun({ text: `as of the ${effectiveDate.display}.`, size: 24, font: "Times New Roman" })
           ]
         }),
-
-        // Signatures
         ...signatureRows
       ]
     }]
@@ -452,41 +403,30 @@ function buildSignatureRows(directors) {
 
 // Update entity data with resignation and appointment
 function updateEntityData(entityId, entity, outgoing, incoming, roles, effectiveDate) {
-  // Update directors
   if (roles.isDirector) {
     const directors = entity.governance?.directors || [];
-
-    // Mark outgoing as resigned
     const outgoingDir = directors.find(d => d.person_id === outgoing.id && d.status === 'active');
     if (outgoingDir) {
       outgoingDir.status = 'resigned';
       outgoingDir.resignation_date = effectiveDate.iso;
     }
-
-    // Add incoming
     directors.push({
       person_id: incoming.id,
       person_name: incoming.name,
       appointed_date: effectiveDate.iso,
       status: 'active'
     });
-
     if (!entity.governance) entity.governance = {};
     entity.governance.directors = directors;
   }
 
-  // Update officers
   if (roles.isOfficer) {
     const officers = entity.governance?.officers || [];
-
-    // Mark outgoing as resigned
     const outgoingOff = officers.find(o => o.person_id === outgoing.id && o.status === 'active');
     if (outgoingOff) {
       outgoingOff.status = 'resigned';
       outgoingOff.resignation_date = effectiveDate.iso;
     }
-
-    // Add incoming with same title
     officers.push({
       person_id: incoming.id,
       person_name: incoming.name,
@@ -494,11 +434,9 @@ function updateEntityData(entityId, entity, outgoing, incoming, roles, effective
       appointed_date: effectiveDate.iso,
       status: 'active'
     });
-
     entity.governance.officers = officers;
   }
 
-  // Save with backup and changelog
   const corpName = entity.legal_name?.en || entity.legal_name?.fr;
   return dataOps.saveEntity(entityId, entity, {
     operation: 'governance-transition',
@@ -515,10 +453,10 @@ function updateEntityData(entityId, entity, outgoing, incoming, roles, effective
 // Generate person ID from name
 function generatePersonId(name) {
   return 'per-' + name.toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove accents
-    .replace(/[^a-z\s-]/g, '') // Remove non-alpha
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z\s-]/g, '')
     .trim()
-    .replace(/\s+/g, '-'); // Spaces to hyphens
+    .replace(/\s+/g, '-');
 }
 
 // Create a new person file
@@ -543,11 +481,9 @@ function createPerson(name, prefix) {
     }
   };
 
-  // Save person file
   const personPath = path.join(DATA_DIR, 'persons', `${id}.json`);
   fs.writeFileSync(personPath, JSON.stringify(person, null, 2));
 
-  // Add to group.json
   const groupPath = path.join(DATA_DIR, 'group.json');
   const group = JSON.parse(fs.readFileSync(groupPath, 'utf8'));
   if (!group.persons.some(p => p.id === id)) {
@@ -575,26 +511,19 @@ function parseArgs(args) {
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--outgoing' && args[i + 1]) {
-      result.outgoing = args[i + 1];
-      i++;
+      result.outgoing = args[i + 1]; i++;
     } else if (args[i] === '--incoming' && args[i + 1]) {
-      result.incoming = args[i + 1];
-      i++;
+      result.incoming = args[i + 1]; i++;
     } else if (args[i] === '--incoming-name' && args[i + 1]) {
-      result.incomingName = args[i + 1];
-      i++;
+      result.incomingName = args[i + 1]; i++;
     } else if (args[i] === '--incoming-prefix' && args[i + 1]) {
-      result.incomingPrefix = args[i + 1];
-      i++;
+      result.incomingPrefix = args[i + 1]; i++;
     } else if (args[i] === '--roles' && args[i + 1]) {
-      result.roles = args[i + 1];
-      i++;
+      result.roles = args[i + 1]; i++;
     } else if (args[i] === '--entities' && args[i + 1]) {
-      result.entities = args[i + 1];
-      i++;
+      result.entities = args[i + 1]; i++;
     } else if (args[i] === '--date' && args[i + 1]) {
-      result.date = args[i + 1];
-      i++;
+      result.date = args[i + 1]; i++;
     } else if (args[i] === '--apply') {
       result.apply = true;
     }
@@ -616,18 +545,15 @@ function tryLoadPerson(personId) {
 async function generateTransition(params) {
   const outgoing = dataOps.loadPerson(params.outgoing);
 
-  // Handle incoming person - load existing or create new
   let incoming;
   if (params.incoming) {
     incoming = tryLoadPerson(params.incoming);
     if (!incoming && params.incomingName) {
-      // ID provided but doesn't exist, create with provided name
       incoming = createPerson(params.incomingName, params.incomingPrefix);
     } else if (!incoming) {
       throw new Error(`Incoming person not found: ${params.incoming}. Use --incoming-name to create.`);
     }
   } else if (params.incomingName) {
-    // No ID provided, generate from name
     const id = generatePersonId(params.incomingName);
     incoming = tryLoadPerson(id);
     if (!incoming) {
@@ -643,12 +569,10 @@ async function generateTransition(params) {
   console.log(`Effective Date: ${effectiveDate.display}`);
   console.log('='.repeat(70));
 
-  // Get outgoing's roles
   const outgoingDerived = outgoing._derived || {};
   let directorships = (outgoingDerived.directorships || []).filter(d => d.status === 'active');
   let officerships = (outgoingDerived.officerships || []).filter(o => o.status === 'active');
 
-  // Filter by entity status
   if (params.entities === 'active') {
     directorships = directorships.filter(d => {
       const entity = dataOps.loadEntity(d.entity_id);
@@ -660,7 +584,6 @@ async function generateTransition(params) {
     });
   }
 
-  // Get unique entity IDs
   const entityIds = new Set();
   directorships.forEach(d => entityIds.add(d.entity_id));
   officerships.forEach(o => entityIds.add(o.entity_id));
@@ -677,16 +600,12 @@ async function generateTransition(params) {
     const corpName = entity.legal_name?.en || entity.legal_name?.fr;
     console.log(`[${entitiesUpdated + 1}/${entityIds.size}] ${corpName}`);
 
-    // Get roles for this entity
     const roles = getRolesInEntity(entity, outgoing.id);
     if (!roles.isDirector && !roles.isOfficer) {
       console.log(`  ⚠ No active roles found, skipping`);
       continue;
     }
 
-    // Determine output location based on --apply flag
-    // Draft documents go to operations/governance-transition/output/
-    // Final executed documents go to minute-books/{entity}/resolutions/
     const isDraft = !params.apply;
     const outputDir = isDraft
       ? path.join(PENDING_DIR, effectiveDate.iso)
@@ -696,10 +615,8 @@ async function generateTransition(params) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    // File naming: drafts include "_for-execution", final docs don't
     const suffix = isDraft ? '_for-execution' : '';
 
-    // Generate resignation resolution (sequence 001 - must happen first)
     const resignDoc = createResignationResolution(entity, outgoing, roles, effectiveDate);
     const resignBuffer = await Packer.toBuffer(resignDoc);
     const resignFilename = `${entityId}_001_resignation_${outgoing.id}_${effectiveDate.iso}${suffix}.docx`;
@@ -707,10 +624,8 @@ async function generateTransition(params) {
     console.log(`  ✓ [001] Resignation: ${resignFilename}`);
     docsGenerated++;
 
-    // Get remaining directors after resignation
     const remainingDirectors = getRemainingDirectors(entity, outgoing.id);
 
-    // Generate appointment resolution (sequence 002 - follows resignation)
     const appointDoc = createAppointmentResolution(entity, outgoing, incoming, roles, effectiveDate, remainingDirectors);
     const appointBuffer = await Packer.toBuffer(appointDoc);
     const appointFilename = `${entityId}_002_appointment_${incoming.id}_${effectiveDate.iso}${suffix}.docx`;
@@ -718,7 +633,6 @@ async function generateTransition(params) {
     console.log(`  ✓ [002] Appointment: ${appointFilename}`);
     docsGenerated++;
 
-    // Apply data changes if requested
     if (params.apply) {
       const result = updateEntityData(entityId, entity, outgoing, incoming, roles, effectiveDate);
       console.log(`  ✓ Data updated (backup: ${path.basename(result.backupFile)})`);
@@ -728,7 +642,6 @@ async function generateTransition(params) {
     console.log('');
   }
 
-  // Rebuild person derived data if changes were applied
   if (params.apply) {
     console.log('Rebuilding person derived data...');
     const rebuildScript = path.join(SCRIPTS_DIR, 'rebuild_persons.py');
@@ -742,7 +655,6 @@ async function generateTransition(params) {
     }
   }
 
-  // Summary
   console.log('─'.repeat(70));
   console.log('SUMMARY');
   console.log('─'.repeat(70));

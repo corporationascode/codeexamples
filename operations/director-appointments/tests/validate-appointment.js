@@ -103,7 +103,7 @@ function testNotAlreadyDirector(entity, personId) {
 
   if (existingDirector) {
     throw new ValidationError(
-      `${existingDirector.person_name} is already an active director of this entity.`,
+      `${existingDirector.person_name || personId} is already an active director of this entity.`,
       'ALREADY_DIRECTOR'
     );
   }
@@ -171,8 +171,10 @@ function runValidation(entityId, personId) {
     } catch (err) {
       console.log(`  ✗ ${test.name}: ${err.message}`);
       failed++;
-      // Stop on first failure for dependent tests
-      if (['ENTITY_NOT_FOUND', 'PERSON_NOT_FOUND'].includes(err.code)) {
+      // Stop on first failure for dependent tests.
+      // NOT_CORPORATION and ENTITY_NOT_ACTIVE also gate all remaining tests:
+      // without a valid active corporation, director checks are meaningless.
+      if (['ENTITY_NOT_FOUND', 'PERSON_NOT_FOUND', 'NOT_CORPORATION', 'ENTITY_NOT_ACTIVE'].includes(err.code)) {
         break;
       }
     }

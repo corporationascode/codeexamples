@@ -57,7 +57,12 @@ function formatDate(dateStr) {
       iso: now.toISOString().split('T')[0]
     };
   }
-  const date = new Date(dateStr);
+  // Parse date parts directly to avoid UTC-midnight timezone shift.
+  // new Date('YYYY-MM-DD') parses as UTC, which toLocaleDateString then
+  // converts to local time - shifting the date back by one day in negative
+  // UTC-offset environments (e.g. UTC-5 renders Feb 1 as Jan 31).
+  const [year, month, day] = dateStr.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
   return {
     display: date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
     iso: dateStr
@@ -264,7 +269,8 @@ function applyAppointment(entityId, entity, person, effectiveDate) {
     changes: {
       type: 'add',
       path: 'governance.directors',
-      value: newDirector
+      value: newDirector,
+      effective_date: effectiveDate.iso  // required by rollback-operation to scope document cleanup
     }
   });
 
